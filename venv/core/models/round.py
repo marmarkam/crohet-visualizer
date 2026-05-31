@@ -25,4 +25,8 @@ class Round:
     @property
     def stitches_consumed(self) -> int:
         return sum(seg.stitches_consumed for seg in self.segments)
-
+    
+    @property
+    def symbols(self) -> list[str]:
+        '''visual symbols for every stitch in this round expanded'''
+        return [s.symbol for s in self.all_stitches]
