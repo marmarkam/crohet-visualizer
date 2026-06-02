@@ -1,4 +1,5 @@
 from core.models import Pattern, Round, Segment, Stitch
+from core.features import get_supported_stitches
 
 '''
 Parser will break down input to output segment objects
@@ -34,4 +35,14 @@ class UnsupportedStitchError(Exception):
     pass
 
 #pure string -> stitch objects
-# def parse_stitch(token: str) -> Stitch:
+def parse_stitch(token: str) -> Stitch:
+    if token in UNSUPPORTED_STITCHES:
+        raise UnsupportedStitchError(
+            f"{UNSUPPORTED_STITCHES[token]}"
+        )
+    if token not in SUPPORTED_STITCHES:
+        raise ValueError(f"'{token}' is not a recognized stitch.")
+    return Stitch(token)
+#stitch objects in ordered segments
+# def parse_segment(raw: str, repeats: int) -> Segment:
+       
