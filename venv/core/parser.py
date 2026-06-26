@@ -60,10 +60,16 @@ def parse_segment(raw: str, repeats: int) -> Segment:
                 count = int(token)
             else:
                 stitch_name = token
-        
-        
 
+        if stitch_name is None:
+            raise ValueError(f"No stitch name found in instruction: '{instruction}'")
         
+        #append to stitches
+        for _ in range (count):
+            stitches.append(parse_stitch(stitch_name))
+    
+    return Segment(stitches, repeats)
+
 
 
 
