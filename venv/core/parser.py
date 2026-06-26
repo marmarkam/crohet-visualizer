@@ -43,6 +43,29 @@ def parse_stitch(token: str) -> Stitch:
     if token not in SUPPORTED_STITCHES:
         raise ValueError(f"'{token}' is not a recognized stitch.")
     return Stitch(token)
+
 #stitch objects in ordered segments
-# def parse_segment(raw: str, repeats: int) -> Segment:
+def parse_segment(raw: str, repeats: int) -> Segment:
+    instructions = raw.lower().strip().split(",")
+    stitches = []
+    for instruction in instructions:
+        stitch_name = None
+        count = 1
+
+        stitch_and_count = instruction.strip().split()
+        
+        #differentiate between stitch and count
+        for token in stitch_and_count:
+            if token.isdigit():
+                count = int(token)
+            else:
+                stitch_name = token
+        
+        
+
+        
+
+
+
+
        
