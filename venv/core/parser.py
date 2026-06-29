@@ -70,8 +70,20 @@ def parse_segment(raw: str, repeats: int) -> Segment:
     
     return Segment(stitches, repeats)
 
+#takes an ordered list of segments and returns Round object
+def parse_round(segment_data: list[dict], round_number: int) -> Round:
+    parsed_segments = []
+    
+    for segment in segment_data:
+        raw = segment["raw"]
+        repeats = segment["repeats"]
+        segment = parse_segment(raw, repeats)
 
+        parsed_segments.append(segment)
 
+    if not parsed_segments:
+        raise ValueError("A round must have at least one segment")
 
-
-       
+    parsed_segments[0].expanded_stitches[0].is_round_start = True
+    
+    return Round(parsed_segments, round_number)
