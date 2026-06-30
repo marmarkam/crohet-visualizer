@@ -87,3 +87,16 @@ def parse_round(segment_data: list[dict], round_number: int) -> Round:
     parsed_segments[0].expanded_stitches[0].is_round_start = True
     
     return Round(parsed_segments, round_number)
+
+#parses round objects and appends to pattern object, then validates
+def parse_pattern(name: str, rounds_data: list[list[dict]]) -> tuple[Pattern, list[str]]:
+    p = Pattern(name)
+    for round_number, segment_data in enumerate(rounds_data, start = 1):
+        parsed_round = parse_round(segment_data, round_number)
+        p.add_round(parsed_round)
+
+    errors = p.validate()
+
+    return p, errors
+    
+
