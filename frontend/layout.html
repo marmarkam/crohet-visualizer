@@ -1,0 +1,22 @@
+<!DOCTYPE html>
+<html lang="eng">
+    <head>
+        <meta charest="UTF-8">
+        <title>{% block title %}Crochaid{% endblock %}</title>
+        <link rel="stylesheet" href="{{ url_for('static', filename='style.css') }}">
+        {% block extra_head %}{% endblock %}
+    </head>
+    <body>
+        <nav class="navbar">
+            <img src="{{ url_for('static', filename='img/logo.png')}}" alt="Crochaid" class="logo">
+            <span class="brand-name">Crochaid</span>
+        </nav>
+
+        <main>
+            {% block content %}
+            {% endblock %}
+        </main>
+
+        {% block scripts %}{% endblock %}
+    </body>
+</html>
