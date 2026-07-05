@@ -1,0 +1,35 @@
+{% extends "layout.html" %}
+
+{% block title %}Crochaid - Pattern Visualizer{% endblock %}
+
+{% block content %}
+<div class="app-container">
+    <div class="viewer-panel" id="viewer-panel">
+        <div id="canvas-container"></div>
+    </div>
+
+    <div class="divider" id="divider"></div>
+
+    <div class="input-panel" id="input-panel">
+        <h2>Pattern Input</h2>
+        <form id="pattern-form">
+            <div class="pattern-name-container">
+                <input type="text" id="pattern-name" placeholder="Pattern Name">
+            </div>
+            <!--round/segment inputs -->
+            <div class="round-segment" id="round-segment">
+                <input type="text" id="round-input" placeholder="sc 6">
+                <button id="add-row-button">Add Row</button>
+                <button id="add-segment-button">+</button>
+            </div>
+        </form>
+    </div>
+</div> 
+{% endblock %}
+
+{% block scripts %}
+<script src="https://cdnjs.cloudflare.com/ajax/libs/three.js/r128/three.min.js"></script>
+<script src="{{ url_for('static', filename='js/resizable.js') }}"></script>
+<script src="{{ url_for('static', filename='js/viewer.js') }}"></script>
+{% endblock %}
+

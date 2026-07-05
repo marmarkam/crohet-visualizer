@@ -1,4 +1,4 @@
-from flask import Flask, request, jsonify
+from flask import Flask, request, jsonify, send_from_directory
 from core.parser import parse_pattern
 from core.geometry import compute_geometry
 
@@ -22,5 +22,7 @@ def handle_pattern():
         "rounds": result["rounds"]
         })
 
-if __name__ == '__main__':
-    app.run(debug=True)
+@app.route('/')
+def index():
+    return send_from_directory('../frontend', 'index.html')
+
