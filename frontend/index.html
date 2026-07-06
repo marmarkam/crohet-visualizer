@@ -20,12 +20,12 @@
             <div class="round" data-round="1">
                 <span class="round-number">1.</span>
                 <div class="segments">
-                    <input type="text" class="segment" placeholder="sc 6">
+                    <input type="text" class="segment-input" placeholder="sc 6">
                     <input type="number" class="repeat-input" value="1" min="1">
                     <button class="add-segment-btn">+</button>
                 </div>
             </div>
-            <button id="add-row-button">Add Row</button>
+            <button id="add-round-btn">Add Round</button>
 
         </form>
     </div>
@@ -36,6 +36,6 @@
 <script src="https://cdnjs.cloudflare.com/ajax/libs/three.js/r128/three.min.js"></script>
 <script src="{{ url_for('static', filename='js/resizable.js') }}"></script>
 <script src="{{ url_for('static', filename='js/viewer.js') }}"></script>
-<scrpt src="{{ url_for('static, filename=js/form.js')}}"></scrpt>
+<script src="{{ url_for('static', filename='js/form.js') }}"></script>
 {% endblock %}
 
