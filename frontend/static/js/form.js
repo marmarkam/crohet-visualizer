@@ -72,6 +72,27 @@ document.addEventListener('DOMContentLoaded', function() {
             renumberRounds();
         }
 
+        //collect form data and send to api on enter
+        document.addEventListener('keydown', function(event) {
+            if (event.key === 'Enter') {
+                event.preventDefault();
+                const data = collectPatternData();
+                console.log(JSON.stringify(data))
+                const name = document.getElementById('pattern-name').value || 'untitled';
+
+                fetch('/api/pattern', {
+                    method: 'POST',
+                    headers: { 'Content-Type': 'application/json' },
+                    body: JSON.stringify({"name": name, "rounds": data })
+                })
+                .then(response => response.json())
+                .then(data => {
+                    console.log(data);
+                })
+
+            }
+        })
+
     });
 });
 
@@ -84,40 +105,37 @@ function renumberRounds(){
     });
 }
 
-// //add round button
-// document.addEventListener('DOMContentLoaded', function () {
-//     document.addEventListener('click', function(e) {
-//         if (e.target.id === 'add-round-btn') {
-//         e.preventDefault();
-//         //clone round elements
-//         const originalRound = document.querySelector('.round')
-//         const newRound = originalRound.cloneNode(true);
+//colllect form data
+function collectPatternData(){
+    const roundsData = [];
 
-//         //update round counter
-//         const roundCount = document.querySelectorAll('.round').length;
-//         const newRoundNumber = roundCount + 1;
-        
-//         const addRoundBtn = document.getElementById('add-round-btn');
-//         addRoundBtn.parentNode.insertBefore(newRound, addRoundBtn);
+    //round divs
+    const rounds = document.querySelectorAll('.round');
+    rounds.forEach(function(round) {
+        const roundData = [];
 
-//         //remove round button
-//         const removeRoundBtn = document.getElementById('remove-round-btn');
+        //get segments for the round
+        const segments = round.querySelectorAll('.segment');
+        segments.forEach(function(segment) {
+            //get raw string and repeat count
+            const raw = segment.querySelector('.segment-input').value.trim();
+            const repeats = parseInt(segment.querySelector('.repeat-input').value);
 
-//         }
+            if(raw === '') return;
 
-//         if (e.target.id === 'remove-round-btn') {
-//             e.preventDefault();
-//             e.target.closest('.round').remove();
-//             renumberRounds();
-//         }
+            //build segment object and push to roundData
+            roundData.push({
+                "raw": raw,
+                "repeats": repeats
+            });
+        });
 
-//         newRound.dataset.round = newRoundNumber;
-//         newRound.querySelector('.round-number').textContent = newRoundNumber + '.';
+        //push this rounds data to outer array
+        if(roundData.length > 0) {
+            roundsData.push(roundData);
+        }
+    });
 
-//         //clear inputs
-//         newRound.querySelectorAll('input').forEach(input => {
-//             input.value = input.type === 'number' ? 1 : '';
-//         })
-//     });
-// });
-    
+    return roundsData;
+
+}  
