@@ -1,0 +1,61 @@
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+
+body {
+    background-color: #393131;  /* dark brown from your mockup */
+    color: white;
+    height: 100vh;
+    overflow: hidden;
+}
+
+.app-container {
+    display: flex;
+    height: calc(100vh - 60px);  /* subtract navbar height */
+    padding: 16px;
+    gap: 8px;
+}
+
+.viewer-panel {
+    flex: 3;  /* takes up ~75% */
+    background-color: #f5f0e8;  /* light canvas background */
+    border-radius: 12px;
+    border: 2px solid #c1ff72;  /* green border from mockup */
+    overflow: hidden;
+}
+
+#canvas-container {
+    width: 100%;
+    height: 100%;
+}
+
+.divider {
+    width: 6px;
+    background-color: #444;
+    cursor: col-resize;
+    border-radius: 3px;
+}
+
+.input-panel {
+    flex: 1;  /* takes up ~25% */
+    background-color: #393131;
+    border: 2px solid #c1ff72;
+    border-radius: 12px;
+    padding: 16px;
+    overflow-y: auto;
+}
+
+.navbar {
+    height: 60px;
+    display: flex;
+    align-items: center;
+    padding: 0 24px;
+}
+
+.brand-name {
+    font-size: 2rem;
+    color: #ffb2e1;  /* pink from your mockup */
+    font-family: cursive;
+}
