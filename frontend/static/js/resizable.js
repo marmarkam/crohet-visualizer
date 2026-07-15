@@ -23,6 +23,8 @@ document.addEventListener('mousemove', function(e) {
     viewerPanel.style.flex = 'none';
     viewerPanel.style.width = percent + '%';
     inputPanel.style.flex = '1';
+
+    // window.dispatchEvent(new Event('resize'));
 });
 
 document.addEventListener('mouseup', function() {
